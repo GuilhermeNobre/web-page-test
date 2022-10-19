@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de GET</title>
+    <link rel="stylesheet" href="./style.css" >
+</head>
+<body>
+    <script>
+        function buttonGET()
+        {
+            var tagSpan = document.getElementById('putTag');
+            var url_test = 'https://upb8l8x91e.execute-api.us-west-2.amazonaws.com/prod/product?productId=103'
+            // var url_test = 'http://cropnet.us/test/now'
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url_test);
+            console.log(xhr);
+            console.log(xhr.readyState);
+            xhr.setRequestHeader('Access-Control-Allow-Origin','*');
+            // xhr.setRequestHeader('User-Agent','PostmanRuntime/7.29.2');
+            // xhr.setRequestHeader('Accept','*/*');
+            // xhr.setRequestHeader('Accept-Encoding','gzip, deflate, br');
+            // xhr.setRequestHeader('Connection','keep-alive');
+
+            // xhr.setRequestHeader("Access-Control-Allow-Methods", "GET");
+            // xhr.setRequestHeader("Access-Control-Request-Headers:", "Content-Type, x-requested-with");
+            // xhr.setRequestHeader("Origin:", "http://127.0.0.1:5500");
+            // xhr.setRequestHeader("Acess-Control-Allow-Origin", "http://127.0.0.1:5500");
+            // xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            xhr.send();
+            console.log(xhr);
+            xhr.onload
+            {
+                if(xhr.readyState === 4)
+                {
+                    console.log('ENTROI');
+                    var data = JSON.parse(xhr.responseText);
+                    tagSpan.innerText = data.prince;
+                    console.log(xhr)
+                    console.log('PASSOU');
+                    console.log(xhr.responseText)
+                }
+            }
+        }
+    </script>
+    <div class='center-screen'>
+        <div class='center-div'>
+            <h2>Pressione os botões</h2>
+            <button id='btGet' class='buttonGet' onclick='buttonGET()'>GET</button>
+            <div class='center-div'>
+                <span>Valor do GET: </span>
+                <div class='center-div'>
+                    <span id="putTag">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
